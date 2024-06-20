@@ -4,28 +4,21 @@
 
 {% block body %}
 
-    <div>
-        <form>
-            <input type="search" name="search" placeholder="Recherche ...">
-            <button type="submit">Rechercher</button>
-        </form>
-    </div>
+    <h1>Résultats de la recherche</h1>
 
-    <table>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                </td>
-            </tr>
+    <h2 class="my-4">Nous avons trouvé les articles suivants pour vous :</h2>
+
+    {% for article in articles %}
+        <div>
+            <h3>{{ article.title }}</h3>
+            <div>
+                <a href="{{ path('app_article_show', {'id': article.id}) }}">Consulter le contenu de l'article</a>
+            </div>
+        </div>
+
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            <div>Aucun article disponible pour ces critères de recherches</div>
         {% endfor %}
-    </table>
+
 
 {% endblock %}
